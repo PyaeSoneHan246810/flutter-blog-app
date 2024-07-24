@@ -4,8 +4,8 @@ final serviceLocator = GetIt.instance;
 
 Future<void> initDependencies() async {
   final supabase = await Supabase.initialize(
-    url: AppSecrets.supabaseProjectUrl,
-    anonKey: AppSecrets.supabaseAPIKey,
+    url: dotenv.env["SUPABASE_PROJECT_URL"]!,
+    anonKey: dotenv.env["SUPABASE_API_KEY"]!,
   );
   Hive.defaultDirectory = (await getApplicationDocumentsDirectory()).path;
   _initSupabaseDependency(supabaseClient: supabase.client);
